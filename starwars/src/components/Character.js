@@ -4,10 +4,10 @@ import { Col, Card, CardHeader, CardText, CardBody, CardFooter, CardSubtitle} fr
 import Axios from 'axios';
 
 function Character(props){
-    const [char, setChar] = useState(props.data)
     const [films, setFilms] = useState([]);
     useEffect(()=>{
-        char.films.forEach(film =>{
+        setFilms([]);
+        props.data.films.forEach(film =>{
             Axios.get(film)
                 .then(data =>{
                     let newFilm = {
@@ -18,30 +18,30 @@ function Character(props){
                 })
             
         })
-    }, [char])
+    }, [props.data])
     return (
         <Col xs='12' sm='6' lg='4'>
-            <Card>
+            <Card style={{height:"100%"}}>
                 <CardHeader>
                     <CardText>
-                        {char.name}
+                        {props.data.name}
                     </CardText>
                 </CardHeader>
                 <CardBody>
                     <CardText>
-                        Born: {char.birth_year}
+                        Born: {props.data.birth_year}
                     </CardText>
                     <CardText>
-                        Hair Color: {char.hair_color}
+                        Hair Color: {props.data.hair_color}
                     </CardText>
                     <CardText>
-                        Eye Color: {char.eye_color}
+                        Eye Color: {props.data.eye_color}
                     </CardText>
                     <CardText>
-                        Gender: {char.gender}
+                        Gender: {props.data.gender}
                     </CardText>
                     <CardText>
-                        Skin Color: {char.skin_color}
+                        Skin Color: {props.data.skin_color}
                     </CardText>
                     
                 </CardBody>
